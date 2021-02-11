@@ -9,7 +9,7 @@ const App: () => React$Node = () => {
     <>
         <StatusBar style="auto" />
         <SafeAreaView>
-          <Home/>
+          <Home />
         </SafeAreaView>
     </>
   );
