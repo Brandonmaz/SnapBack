@@ -53,7 +53,7 @@ const Post = (props) => {
                             </View>
 
                             <TouchableOpacity style={styles.iconContainer} onPress={onLikePress}>
-                                <MaterialCommunityIcons name={"heart-plus-outline"} size={45} color='rgba(255,255,255,0.9)'></MaterialCommunityIcons>
+                                <MaterialCommunityIcons name={"heart-plus-outline"} size={45} color={isLiked ? 'red' : 'rgba(255,255,255,0.9)'}></MaterialCommunityIcons>
                                 <Text style={styles.statsLabel}>{post.likes}</Text>
                             </TouchableOpacity>
 
