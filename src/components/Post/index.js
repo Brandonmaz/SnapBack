@@ -4,6 +4,7 @@ import {
     TouchableWithoutFeedback,
     Text,
     Image,
+    TouchableOpacity,
 } from 'react-native'
 import Video from 'react-native-video'
 import styles from './styles'
@@ -14,12 +15,22 @@ import Foundation from 'react-native-vector-icons/Foundation'
 
 const Post = (props) => {
 
-    const {post} = props
+    const [post, setPost] = useState(props.post)
+    const [isLiked, setIsLiked] = useState(false)
 
     const [paused, setPaused] = useState(false)
 
     const onPlayPausePress = () => {
         setPaused(!paused)
+    }
+
+    const onLikePress = () => {
+        const likesToAdd = isLiked ? -1 : 1
+        setPost({
+            ...post, 
+            likes: post.likes + likesToAdd,
+        })
+        setIsLiked(!isLiked)
     }
     return (
         <View style={styles.container}>
@@ -40,19 +51,24 @@ const Post = (props) => {
                             <View style={styles.profileContainer}>
                                 <Image style={styles.profilePicture} source={{uri: post.user.userImage}} />
                             </View>
-                            <View style={styles.iconContainer}>
+
+                            <TouchableOpacity style={styles.iconContainer} onPress={onLikePress}>
                                 <MaterialCommunityIcons name={"heart-plus-outline"} size={45} color='rgba(255,255,255,0.9)'></MaterialCommunityIcons>
                                 <Text style={styles.statsLabel}>{post.likes}</Text>
-                            </View>
+                            </TouchableOpacity>
+
                             <View style={styles.iconContainer}>
                                 <MaterialCommunityIcons name={"comment-processing-outline"} size={45} color='rgba(255,255,255,0.9)'></MaterialCommunityIcons>
                                 <Text style={styles.statsLabel}>{post.comments}</Text>
                             </View>
+
                             <View style={styles.iconContainer}>
                                 <FontAwesome name={"slideshare"} size={40} color='rgba(255,255,255,0.9)'></FontAwesome>
                                 <Text style={styles.statsLabel}>{post.shares}</Text>
                             </View>
+
                         </View>
+
                         <View style={styles.bottomContainer}>
                             <View>
                                 <Text style={styles.handle}>@{post.user.username}</Text>
