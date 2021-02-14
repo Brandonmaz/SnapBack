@@ -1,8 +1,8 @@
 import React from 'react' 
 import {View, FlatList, Dimensions} from 'react-native' 
 import Post from '../../components/Post'
-
 import posts from '../../../data/posts'
+
 const Home = () => {
     return (
         <View>
@@ -10,7 +10,7 @@ const Home = () => {
                 data={posts}
                 renderItem={({item}) => <Post post={item}/>}
                 showsVerticalScrollIndicator={false}
-                snapToInterval={Dimensions.get('window').height - 78}
+                snapToInterval={Dimensions.get('window').height - 125}
                 snapToAlignment={'start'}
                 decelerationRate={'fast'}
             />
